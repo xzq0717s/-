@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://119.29.91.37:3306/tedemo
+    username: design
+    password: waeDxmr5k5YkYxZN
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.tedemo.mapper.TeacherSynthesisMapper">
+    <select id="Synlist" resultType="com.example.tedemo.pojo.TeacherSynthesis">
+        SELECT DISTINCT ts.*
+        FROM teacher_synthesis ts
+        JOIN user_info ui ON ui.nickname = ts.teacher_name
+            <where>
+                <if test="compositeScoreGrade!=null">
+                    Composite_Score_Grade = #{compositeScoreGrade}
+                </if>
+                <if test="teachingQualityScoreGrade!=null">
+                    and Teaching_Quality_Score_Grade = #{teachingQualityScoreGrade}
+                </if>
+                and Teacher_Name = #{username}
+
+            </where>
+    </select>
+
+    <select id="AdminSynlist" resultType="com.example.tedemo.pojo.TeacherSynthesis">
+        SELECT DISTINCT  ts.*
+        FROM teacher_synthesis ts
+        JOIN user_info ui ON ui.nickname = ts.teacher_name
+        <where>
+            <if test="compositeScoreGrade!=null">
+                Composite_Score_Grade = #{compositeScoreGrade}
+            </if>
+            <if test="teachingQualityScoreGrade!=null">
+                and Composite_Score_Grade = #{teachingQualityScoreGrade}
+            </if>
+        </where>
+    </select>
+
+    <update id="updataCount" parameterType="com.example.tedemo.pojo.TeacherSynthesis">
+        UPDATE teacher_synthesis
+        set
+            <if test="prov == '省级'">
+                Provincial_Level = #{counts},
+            </if>
+            <if test="prov == '国家级'">
+                National_Level = #{counts},
+            </if>
+            <if test="prov == '校级'">
+                University_Level = #{counts},
+            </if>
+            Teaching_Achievements_Count = #{counts}
+        where teacher_name = #{username}
+    </update>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.tedemo.mapper.PowerMapper">
+    <select id="selectPowerUserFun" resultType="com.example.tedemo.pojo.user_info">
+        SELECT * FROM user_info
+        <where>
+            <if test="power!=null">
+                Power = #{power}
+            </if>
+            <if test="role!=role">
+                and role = #{role}
+            </if>
+
+
+        </where>
+
+    </select>
+
+
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.tedemo.mapper.TeacherCompetitionMapper">
+    <select id="tealist" resultType="com.example.tedemo.pojo.TeacherCompetition">
+        SELECT * FROM teacher_competition
+        <where>
+            <if test="level!=null">
+                level = #{level}
+            </if>
+            <if test="status!=null">
+                and status = #{status}
+            </if>
+            and username = #{username}
+
+        </where>
+
+    </select>
+
+    <select id="Admintealist" resultType="com.example.tedemo.pojo.TeacherCompetition">
+        SELECT * FROM teacher_competition
+        <where>
+            <if test="level!=null">
+                level = #{level}
+            </if>
+            <if test="status!=null">
+                and status = #{status}
+            </if>
+
+
+        </where>
+
+
+
+    </select>
+
+</mapper>

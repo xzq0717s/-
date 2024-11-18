@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.tedemo.mapper.ItemMapper">
+
+    <select id="list" resultType="com.example.tedemo.pojo.itmeList">
+        SELECT * FROM item
+            <where>
+                <if test="category!=null">
+                    category = #{category}
+                </if>
+                <if test="state!=null">
+                    and state = #{state}
+                </if>
+                and username = #{username}
+
+            </where>
+
+    </select>
+
+    <select id="Adminlist" resultType="com.example.tedemo.pojo.itmeList">
+        SELECT * FROM item
+        <where>
+            <if test="category!=null">
+                category = #{category}
+            </if>
+            <if test="state!=null">
+                and state = #{state}
+            </if>
+
+
+        </where>
+
+
+
+    </select>
+
+</mapper>
